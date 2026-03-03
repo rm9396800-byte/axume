@@ -8,15 +8,15 @@ public class ItalianSoilder {
     public ItalianSoilder() {
         this.image = new ImageIcon(getClass().getResource("/game/image/italiansolider.jpg")).getImage();
         Path2D p = new Path2D.Double();
-        p.moveTo(0, ROCKET_SIZE/2);
+        p.moveTo(0, soldierSize /2);
         p.lineTo(15, 10);
-        p.lineTo(ROCKET_SIZE-5, 13);
-        p.lineTo(ROCKET_SIZE+10, ROCKET_SIZE/2);
-        p.lineTo(ROCKET_SIZE-5, ROCKET_SIZE-13);
-        p.lineTo(15, ROCKET_SIZE-10);
+        p.lineTo(soldierSize -5, 13);
+        p.lineTo(soldierSize +10, soldierSize /2);
+        p.lineTo(soldierSize -5, soldierSize -13);
+        p.lineTo(15, soldierSize -10);
         rocketShape = new Area(p);
     }
-    public static final double ROCKET_SIZE = 50;
+    public static final double soldierSize = 50;
     private double x;
     private double y;
     private final float speed = 0.3f;
@@ -47,7 +47,7 @@ public class ItalianSoilder {
         AffineTransform oldTransform = g2.getTransform();
         g2.translate(x, y);
         AffineTransform trans = new AffineTransform();
-        trans.rotate(Math.toRadians(angle), ROCKET_SIZE/2, ROCKET_SIZE/2);
+        trans.rotate(Math.toRadians(angle), soldierSize /2, soldierSize /2);
         g2.drawImage(image, trans, null);
         g2.setTransform(oldTransform);
 
@@ -68,16 +68,16 @@ public class ItalianSoilder {
     public Area getShape() {
         AffineTransform afx = new AffineTransform();
         afx.translate(x, y);
-        afx.rotate(Math.toRadians(angle), ROCKET_SIZE/2, ROCKET_SIZE/2);
+        afx.rotate(Math.toRadians(angle), soldierSize /2, soldierSize /2);
         return new Area(afx.createTransformedShape(rocketShape));
     }
 
     public boolean check(int width, int height) {
 
-        if (x < -ROCKET_SIZE * 2 ||
-                y < -ROCKET_SIZE ||
-                x > width + ROCKET_SIZE ||
-                y > height + ROCKET_SIZE) {
+        if (x < -soldierSize * 2 ||
+                y < -soldierSize ||
+                x > width + soldierSize ||
+                y > height + soldierSize) {
             return false;
         }
         return true;
